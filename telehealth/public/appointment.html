@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Your Appointments</h2>
+    <button onclick="loadAppointments()">Load Appointments</button>
+    <div id="appointments"></div>
+  </div>
+
+  <script>
+    async function loadAppointments() {
+      const token = localStorage.getItem("token");
+      const res = await fetch("/api/appointments", {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      const data = await res.json();
+      document.getElementById("appointments").innerHTML =
+        data.map(app => `<div class="card">
+          <h3>${app.doctorName}</h3>
+          <p>Date: ${new Date(app.date).toLocaleString()}</p>
+          <p>Status: ${app.status}</p>
+        </div>`).join("");
+    }
+  </script>
+</body>
+</html>

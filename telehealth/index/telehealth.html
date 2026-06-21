@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telehealth UI</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🏥 Telehealth UI</h1>
+</header>
+
+<div class="container">
+
+  <!-- Booking Form -->
+  <div class="card">
+    <h2>📅 Booking Form</h2>
+
+    <input id="patientName" placeholder="👤 Patient Name">
+    <input id="doctorName" placeholder="🩺 Doctor Name">
+    <input type="date" id="date">
+
+    <button onclick="book()">Book Appointment</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <!-- Appointment List -->
+  <div class="card">
+    <h2>📋 Appointment List</h2>
+    <ul id="list"></ul>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

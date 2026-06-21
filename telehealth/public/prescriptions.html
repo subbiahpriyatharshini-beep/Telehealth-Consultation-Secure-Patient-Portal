@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prescriptions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Your Prescriptions</h2>
+    <button onclick="loadPrescriptions()">Load Prescriptions</button>
+    <div id="prescriptions"></div>
+  </div>
+
+  <script>
+    async function loadPrescriptions() {
+      const token = localStorage.getItem("token");
+      const res = await fetch("/api/prescriptions", {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      const data = await res.json();
+      document.getElementById("prescriptions").innerHTML =
+        data.map(rx => `<div class="card">
+          <h3>${rx.medicineName}</h3>
+          <p>Dosage: ${rx.dosage}</p>
+          <p>Instructions: ${rx.instructions}</p>
+        </div>`).join("");
+    }
+  </script>
+</body>
+</html>
